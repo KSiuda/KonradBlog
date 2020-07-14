@@ -1,0 +1,31 @@
+﻿@page "/Articles"
+@using KonradBlog.Services
+@inject ArticleService articleService
+
+<NavLink class="nav-link" href="AddArticle">
+    <span class="oi oi-plus" aria-hidden="true"></span>Add new
+</NavLink>
+
+<h1>Blog Posts</h1>
+
+@if (articles == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    foreach(var article in articles)
+    {
+        <h2>@article.Title</h2>
+        <h3>@article.Lead</h3>
+
+        @article.Content
+    }
+}
+@code {
+    List<KonradBlog.Data.Article> articles;
+    protected override async Task OnInitializedAsync()
+    {
+        articles = await Task.Run(() => articleService.GetAllArticles());
+    }
+}

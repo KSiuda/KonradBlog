@@ -1,0 +1,25 @@
+﻿@page "/AddArticle"
+@using KonradBlog.Services
+@inject ArticleService articleService
+@inject NavigationManager navigationManager
+
+<h2>Add Article</h2>
+<hr />
+
+<form>
+
+</form>
+
+@code {
+    KonradBlog.Data.Article article = new KonradBlog.Data.Article();
+
+    protected void CreateArticle()
+    {
+        articleService.CreateArticle(article);
+        navigationManager.NavigateTo("Articles");
+    }
+    void Cancel()
+    {
+        navigationManager.NavigateTo("Articles");
+    }
+}

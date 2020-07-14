@@ -12,5 +12,7 @@ namespace KonradBlog.Data
             : base(options)
         {
         }
+
+        public DbSet<Article> Articles { get; set; }
     }
 }
